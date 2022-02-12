@@ -77,7 +77,6 @@ $ yarn start
 ```
 
 ```bash
-# Clone this project
 # Split the terminal
 
 # Access
