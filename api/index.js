@@ -1,8 +1,10 @@
 const express = require("express");
 const uuid = require("uuid");
-const port = 3000;
+const port = 8000;
 const app = express();
+const cors = require("cors");
 app.use(express.json());
+app.use(cors());
 
 const orders = [];
 
@@ -28,8 +30,6 @@ const MiddlewareForId = (request, response, next) => {
   next();
 };
 
-
-
 // ROUTES
 
 // Listar Pedidos
@@ -51,7 +51,11 @@ app.post("/orders", MiddlewareChecksMethodAndUrl, (request, response) => {
 });
 
 // Atualizar Pedido
-app.put("/orders/:id", MiddlewareForId, MiddlewareChecksMethodAndUrl, (request, response) => {
+app.put(
+  "/orders/:id",
+  MiddlewareForId,
+  MiddlewareChecksMethodAndUrl,
+  (request, response) => {
     const { order, clientName, price } = request.body;
     const status = "Em preparação";
 
@@ -68,45 +72,60 @@ app.put("/orders/:id", MiddlewareForId, MiddlewareChecksMethodAndUrl, (request, 
 );
 
 // Deletar Pedido
-app.delete("/orders/:id", MiddlewareForId, MiddlewareChecksMethodAndUrl, (request, response) => {
-  const index = request.orderIndex;
+app.delete(
+  "/orders/:id",
+  MiddlewareForId,
+  MiddlewareChecksMethodAndUrl,
+  (request, response) => {
+    const index = request.orderIndex;
 
-  const id = request.orderId;
+    const id = request.orderId;
 
-  orders.splice(index, 1);
+    orders.splice(index, 1);
 
-  return response.status(204).json();
-});
+    return response.status(204).json();
+  }
+);
 
 // Listar o pedido pelo id
-app.get("/orders/:id", MiddlewareForId, MiddlewareChecksMethodAndUrl, (request, response) => {
-    const id = request.orderId 
-    const index = request.orderIndex 
+app.get(
+  "/orders/:id",
+  MiddlewareForId,
+  MiddlewareChecksMethodAndUrl,
+  (request, response) => {
+    const id = request.orderId;
+    const index = request.orderIndex;
 
-    const { order, clientName, price } = request.body
+    const { order, clientName, price } = request.body;
     const status = "Em preparação";
-  
+
     const updateOrder = { id, order, clientName, price, status };
 
     orders[index] = updateOrder;
 
     return response.json({ updateOrder });
-  });
+  }
+);
 
 // PATCH do status
-app.patch("/orders/:id", MiddlewareForId, MiddlewareChecksMethodAndUrl, (request, response) => {
-    const id = request.orderId 
-    const index = request.orderIndex 
+app.patch(
+  "/orders/:id",
+  MiddlewareForId,
+  MiddlewareChecksMethodAndUrl,
+  (request, response) => {
+    const id = request.orderId;
+    const index = request.orderIndex;
 
-    const { order, clientName, price } = request.body
+    const { order, clientName, price } = request.body;
     const status = "Pedido Pronto";
-  
+
     const updateOrder = { id, order, clientName, price, status };
 
     orders[index] = updateOrder;
 
     return response.json({ updateOrder });
-  });
+  }
+);
 
 // Servidor Node.js
 app.listen(port, () => {
