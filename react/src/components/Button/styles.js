@@ -8,7 +8,8 @@ export const Button = styled.button`
   height: 68px;
   margin: 14px 0px;
   border: none;
-  background: #d93856;
+  background: ${(props) =>
+    props.isBack ? "rgba(255, 255, 255, 0.14);" : "#D93856;"};
   border-radius: 14px;
   cursor: pointer;
   font-style: normal;
