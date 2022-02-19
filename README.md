@@ -19,7 +19,7 @@
 <!-- Status -->
 
  <h4 align="center"> 
-	🚧  DesafioReact 🚀 Under construction...  🚧
+	🚧  Ordening App 🚀 Under construction...  🚧
 </h4> 
 
 <hr>
