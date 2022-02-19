@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-import { Container, Image, ContainerOrders } from "./styles";
+import { Container, Image, ContainerOrders, Order, Client } from "./styles";
 import Logo from "../../assets/background1.svg";
 import H1 from "../../components/Title";
 import ContainerItems from "../../components/ContainerItems";
@@ -39,16 +39,23 @@ const Home = () => {
     <Container>
       <Image alt="logo-imagem" src={Logo} />
       <ContainerItems isBlur={true}>
-        <H1>Usuários</H1>
+        <H1>Pedidos</H1>
 
         <ul>
           {orders.map((order) => (
             <ContainerOrders key={order.id}>
-              <div>{order.order}</div>
-              <div>{order.clientName}</div>
+              <Order>
+                <p>{order.order}</p>
+              </Order>
+
               <button onClick={() => deleteOrder(order.id)}>
                 <img src={Trash} alt="Lata de lixo" />
               </button>
+              
+              <Client>
+                <p>{order.clientName}</p>
+              </Client>
+          
             </ContainerOrders>
           ))}
         </ul>

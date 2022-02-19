@@ -34,7 +34,7 @@ const MiddlewareForId = (request, response, next) => {
 
 // Listar Pedidos
 app.get("/orders", MiddlewareChecksMethodAndUrl, (request, response) => {
-  return response.json({ orders });
+  return response.json(orders);
 });
 
 // Criar Pedido
@@ -47,7 +47,7 @@ app.post("/orders", MiddlewareChecksMethodAndUrl, (request, response) => {
 
   orders.push(client);
 
-  return response.status(201).json({ client });
+  return response.status(201).json(client);
 });
 
 // Atualizar Pedido

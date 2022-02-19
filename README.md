@@ -16,13 +16,6 @@
    <img alt="Github stars" src="https://img.shields.io/github/stars/Gui1703/Ordening-App?color=56BEB8" /> 
 </p>
 
-<!-- Status -->
-
- <h4 align="center"> 
-	🚧  Ordening App 🚀 Under construction...  🚧
-</h4> 
-
-<hr>
 
 <p align="center">
   <a href="#dart-about">About</a> &#xa0; | &#xa0; 
